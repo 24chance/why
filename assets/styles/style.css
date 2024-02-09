@@ -1,0 +1,885 @@
+/* #BE5E03 orange */
+/* #0B760C green */
+/* #1D1D1D dark background */
+
+/* imports */
+@import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+
+/* --------------------overall css--------------------- */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    background: var(--bg-color);
+    overflow-x: hidden;
+    
+}
+
+:root{
+    --green: #0B760C;
+    --orange: #BE5E03;
+    --bg-color: #fff;
+    --light-color: #ccc;
+    --dark-color: #0e0d0d;
+}
+
+.dark-mode{
+    --green: #BE5E03;
+    --orange: #0B760C;
+    --bg-color: #1D1D1D;
+    --light-color: #0e0d0d;
+    --dark-color: #ccc;
+}
+
+.block{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.2);
+    padding: 50px 0;
+    min-width: 400px;
+    flex-wrap: wrap;
+}
+
+
+
+/* titles style  */
+h5{
+    color: var(--green);
+    font-size: 40px;
+    font-family: 'Single Day';
+    text-align: center;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    transition: .3s ease-in-out;
+    width: fit-content;
+    margin: 10px auto;
+}
+
+h5::after{
+    content: '';
+    display: block;
+    width: 150px;
+    height: 5px;
+    background: var(--green);
+    margin: 0px auto 20px auto;
+    border-radius: 10px;
+    transition: .3s ease-in-out;
+}
+
+h5:hover::after{
+    width: 200px;
+}
+
+
+
+/* cards styles  */
+
+.card{
+    /* margin: 20px 0; */
+    min-width: 350px;
+    border-radius: 5px;
+    position: relative;
+    background: var(--bg-color);
+    transition: .3s ease-in-out;
+}
+
+.card::after, .card::before{
+    content: '';
+    border-radius: 5px;
+    width: 102%;
+    height: 104%;
+    background: linear-gradient(180deg, var(--green), var(--orange));
+    transition: .3s ease-in-out;
+    position: absolute;
+    left: -4px;
+    top: -4px;
+    z-index: -1;
+}
+
+.card::before{
+    filter: blur(20px);
+    opacity: 0.7;
+}
+
+.card::after{
+    opacity: 0.5;
+}
+
+/* --------------------buttons css--------------------- */
+.btns{
+    border: 1px solid var(--green);
+    width: 100%;
+    border-radius: 25px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    margin: 10px auto;
+    padding: 10px 0 10px 0;
+    outline: none;
+    font-size: 15px;
+    outline: none;
+    color: var(--green);
+    cursor: pointer;
+    background: none;
+    font-family: poppins;
+}
+
+.btns:hover{
+    border-color: var(--orange);
+    color: var(--orange);
+}
+
+
+
+
+
+
+/* --------------------specifics css--------------------- */
+/* --------------------nav css--------------------- */
+nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    position: sticky;
+    top: 0;
+    margin-bottom: 20px;
+    background: var(--bg-color);
+    z-index: 10;
+    align-items: center;
+}
+
+
+/* --------------------left side of nav css--------------------- */
+.l-navbar{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo{
+    width: 100px;
+    height: 50px;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.logo a img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+
+.links{
+    padding: 10px;
+    margin: auto 0;
+}
+
+nav .links a, nav .links i{
+    font-size: 20px;
+    color: var(--green);
+    text-decoration: none;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+nav .links a i{
+    padding: 3px;
+    font-size: 16px;
+}
+
+nav .links a::after{
+    content: "";
+    width: 100%;
+    height: 2px;
+    background: var(--orange);
+    position: absolute;
+    left: 0;
+    top: 80%;
+    transition: .3s;
+    opacity: 0;
+}
+
+nav .links a:hover, nav .links i:hover, nav .links a:hover i{
+    color: var(--orange);
+}
+nav .links a:hover::after{
+    opacity: 1;
+}
+
+
+nav .links .fa-search, nav .r-navbar .menu{
+    display: none;
+    position: relative;
+}
+
+/* --------------------dropdown css--------------------- */
+
+.dropdown{
+    position: relative;
+}
+
+.dropdown-content{
+    position: absolute;
+    background-color: var(--light-color);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 10;
+    display: flex;
+    gap: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: .5s ease-in-out;
+    left: 0;
+    top: 100%;
+    transform: scale(0);
+}
+
+.dropdown .dropdown-content > div{
+    padding-right: 40px;
+    border-right: 1px solid var(--dark-color);
+}
+
+.dropdown .dropdown-content > div:last-child{
+    border-right: none;
+
+}
+
+.dropdown-content a{
+    display: block;
+}
+
+/* --------------------trigger dropdown css--------------------- */
+
+.dropdown:hover .dropdown-content{
+    opacity: 1;
+    transform: scale(1);
+    transition: .3s ease-in-out;
+}
+
+
+
+/* --------------------sidenav css--------------------- */
+.sidenav{
+    width: 300px;
+    border-radius: 5px;
+    /* height: 100vh; */
+    background: var(--light-color);
+    text-align: center;
+    position: absolute;
+    left: -240px;
+    top: -900px;
+    z-index: 20;
+    border: 1px solid var(--green);
+    transition: .5s ease-in-out;
+    opacity: 0;
+}
+
+.sidenav hr{
+    border: 1px solid #5f5d5d;
+    margin: 10px 0px;
+    width: 80%;
+}
+
+.sidenav ul{
+    width: 100%;
+    margin: 5px 20px;
+    text-align: left;
+}
+
+.sidenav ul li{
+    padding: 6px;
+    list-style: none;
+}
+
+.sidenav a{
+    font-size: 20px;
+    color: var(--green);
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+}
+
+.sidenav ul li a:hover{
+    color: var(--orange);
+}
+
+
+/* --------------------small-sidenav css--------------------- */
+.sidenav .dropdownContainer{
+    position: relative;
+}
+
+.sidenav .drop{
+    background: var(--bg-color);
+    z-index: 30;
+    position: absolute;
+    top: 90%;
+    width: fit-content;
+    height: auto;
+    display: flex;
+    padding: 10px 0;
+    border-radius: 5px;
+    border: 1px solid var(--green);
+    scale: 0;
+    opacity: 0;
+    transition: .3s ease-in-out;
+}
+
+.sidenav .drop div{
+    padding: 0 15px;
+    border-right: 1px solid var(--dark-color);
+}
+
+.sidenav .drop div:last-child{
+    border-right: none;
+}
+
+.sidenav .drop a{
+    display: block;
+    padding: 10px;
+}
+
+.genre{
+    position: relative;
+}
+
+.genre:hover i{
+    color: var(--orange);
+}
+
+.genre i{
+    position: absolute;
+    left: 80%;
+    top: 50%;
+    top: 0;
+    /* transform: translateY(-50%); */
+    color: var(--green);
+    cursor: pointer;
+}
+
+
+/* --------------------trigger-sidenav dropdown css--------------------- */
+.sidenav .dropdownContainer:hover .drop{
+    opacity: 1;
+    scale: 1;
+    transition: .5s ease-in-out;
+}
+
+
+
+
+/* --------------------search-nav css--------------------- */
+.search-nav{
+    transition: 1s;
+}
+
+/* --------------------center of nav css--------------------- */
+.c-navbar{
+    display: flex;
+    align-items: center;
+    transition: .3s;
+}
+
+.c-navbar  .inputSearch{
+    width: 350px;
+}
+
+.c-navbar  input{
+    background: none;
+    border: 1px solid var(--green);
+    width: 100%;
+    float: right;
+    border-radius: 25px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    margin: 0 auto;
+    padding: 10px 10px 10px 25px;
+    outline: none;
+    font-size: 15px;
+    color: var(--orange);
+    transition: .3s;
+}
+
+.c-navbar  input:focus{
+    outline: none;
+    border: 1px solid var(--orange);
+}
+
+.c-navbar  input::placeholder{
+    color: var(--green);
+}
+
+.c-navbar  input:focus::placeholder{
+    color: var(--orange);
+}
+
+
+.c-navbar  .buttonSearch{
+    transition: .3s;
+    width: 70px;
+}
+
+.c-navbar  button{
+    transition: .3s;
+    background: none;
+    border: 1px solid var(--green);
+    width: 100%;
+    border-left: none;
+    border-radius: 25px;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    margin: 10px auto;
+    padding: 10px 0 10px 0;
+    outline: none;
+    font-size: 15px;
+    outline: none;
+    color: var(--green);
+    cursor: pointer;
+}
+
+.c-navbar  button:hover{
+    border: 1px solid var(--orange);
+    border-left: none;
+    color: var(--orange);
+}
+
+
+
+
+/* --------------------right side of nav css--------------------- */
+.r-navbar{
+    padding: 10px;
+    align-items: center;
+    margin: 0 20px ;
+}
+
+.r-navbar button:first-child{
+    background: transparent;
+    border: none;
+    padding: 7px 10px;
+    font-size: 15px;
+    margin: 5px;
+    border-radius: 5px;
+    color: var(--green);
+    position: relative;
+}
+
+.r-navbar button{
+    border: none;
+    padding: 7px 10px;
+    font-size: 15px;
+    margin: 5px;
+    border-radius: 5px;
+    background: var(--green);
+    color: #fff;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.r-navbar button:first-child::after{
+    content: "";
+    width: 100%;
+    height: 2px;
+    background: var(--orange);
+    position: absolute;
+    left: 0;
+    top: 90%;
+    transition: .3s;
+    opacity: 0;
+}
+
+.r-navbar button:first-child:hover::after{
+    opacity: 1;
+}
+
+.r-navbar button:hover{
+    color: var(--orange);
+    background: transparent;
+}
+
+.r-navbar i{
+    margin: 0 20px;
+    font-size: 20px;
+    color: var(--green);
+    cursor: pointer;
+}
+
+.r-navbar i:hover{
+    color: var(--orange);
+}
+
+
+/* --------------------main css--------------------- */
+
+/* --------------------main header css--------------------- */
+main .m-header{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 10%;
+}
+
+/* --------------------main header right side css--------------------- */
+
+main .m-header div{
+    flex: 1 1 500px;
+    height: 100%;
+    padding: 20px;
+}
+
+main .m-header .right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--dark-color);
+}
+
+main .m-header .right h1{
+    font-size: 12rem;
+    color: var(--green);
+    font-family: 'Single Day';
+}
+
+main .m-header .right p{
+    font-size: 1.7rem;
+    font-family: 'Single Day';
+    padding: 0 20px;
+    text-align: justify;
+}
+
+main .m-header .right h6{
+    font-size: 0.8rem;
+    text-align: justify;
+    padding: 20px;
+}
+
+
+
+
+/* --------------------main header left side css--------------------- */
+
+main .m-header .left .image{
+    background: url(https://qph.cf2.quoracdn.net/main-qimg-4fc5f85e4765e33def54c6387a6d6f3e) no-repeat center center/cover;
+    margin: 10px auto;
+    width: 320px;
+    height: 300px;
+    border-radius: 100%;
+    box-shadow: 0 0 25px var(--green);
+    /* background: #000; */
+}
+
+
+
+/* -----------------main first block cards image section css------------------- */
+main .m-body .card .image{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+main .m-body .card .image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+/* ----------------main first block cards description section css--------------- */
+
+main .m-body .card .desc{
+    padding: 10px;
+    font-family: 'Single Day';
+    text-align: justify;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #00000086;
+    backdrop-filter: blur(2px);
+    border-radius: 5px;
+    height: 100%;
+    transition: .5s ease-in-out;
+    opacity: 0;
+}
+
+main .m-body .card .desc h4{
+    text-align: center;
+    color: var(--green);
+    font-size: 30px;
+}
+
+main .m-body .card .desc p{
+    color: white;
+    font-size: 14px;
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+main .m-body .card .desc button{
+    border: 1px solid var(--green);
+    width: 100%;
+    border-radius: 25px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    margin: 10px auto;
+    padding: 10px 0 10px 0;
+    outline: none;
+    font-size: 15px;
+    outline: none;
+    color: var(--green);
+    cursor: pointer;
+    background: none;
+}
+
+main .m-body .card .desc button:hover{
+    border-color: var(--orange);
+    color: var(--orange);
+}
+
+
+main .m-body .card:hover .desc{
+    opacity: 1;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+}
+
+/* --------------------create section css--------------------- */
+
+.create{
+    background: var(--light-color);
+}
+
+
+.create .card{
+    flex: 1 1 500px;
+    height: 100%;
+    padding: 20px;
+    margin: 0 10px;
+    text-align: center;
+}
+
+.create .card:nth-child(2){
+    background: var(--light-color);
+    padding: 0;
+}
+
+.create .card h2{
+    font-size: 30px;
+    color: var(--dark-color);
+    font-family: "Poppins", sans-serif;
+}
+
+.create .card p{
+    font-size: 12px;
+    color: var(--dark-color);
+    font-family: "Poppins", sans-serif;
+}
+
+.create .card textarea{
+    font-family: "Poppins", sans-serif;
+    width: 100%;
+    height: 150px;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 15px;
+    outline: none;
+    background: var(--bg-color);
+    border: 1px solid var(--green);
+    color: var(--dark-color);
+    resize: none;
+}
+
+.create .card:last-child p{
+    width: 70%;
+    margin: 10px auto;
+    padding: 0;
+}
+
+.create .btns{
+    width: 20%;
+}
+
+
+
+/* --------------------Feedback css--------------------- */
+
+.feedback form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 0 1 400px;
+}
+
+.feedback form input{
+    padding: 10px;
+    border: 1px solid var(--green);
+    background: var(--bg-color);
+    color: var(--dark-color);
+    outline: none;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.feedback form input:focus, .feedback form textarea:focus{
+    border: 1px solid var(--orange);
+}
+
+.feedback form textarea{
+    padding: 10px;
+    border: 1px solid var(--green);
+    background: var(--bg-color);
+    color: var(--dark-color);
+    outline: none;
+    border-radius: 5px;
+    font-size: 15px;
+    resize: none;
+}
+
+
+
+
+
+
+
+
+
+/* --------------------footer css--------------------- */
+
+footer{
+    padding: 10px;
+    background: var(--green);
+    color: #fff;
+    text-align: center;
+}
+
+
+/* --------------------scrollbar css--------------------- */
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-track{
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb{
+    background: var(--green);
+    border-radius: 5px;
+}
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --------------------media query css--------------------- */
+
+@media screen and (max-width: 1168px){
+
+    nav .links a, nav .c-navbar, nav .r-navbar button{
+        display: none;
+    }
+
+    nav .links .fa-search{
+        display: flex;
+    }
+
+    nav .r-navbar .menu{
+        display: flex;
+    }
+    
+    .icons{
+        display: flex;
+    }
+    
+    .icons i{
+        transition: .3s;
+
+    }
+    
+}
+
+@media screen and (max-width: 700px){
+    nav .l-navbar .logo{
+        width: 70px;
+        transition: .3s;
+    }
+
+    .c-navbar  .inputSearch{
+        width: 200px;
+    }
+
+    .c-navbar  .buttonSearch{
+        width: 40px;
+    }
+
+    .c-navbar input{
+        font-size: 10px;
+    }
+
+    .c-navbar button{
+        font-size: 10px;
+        padding-right: 5px;
+    }
+
+    .icons{
+        width: fit-content;
+    }
+    .icons  i{
+        margin: 10px;
+        padding: 0;
+        font-size: 20px;
+        transition: .3s;
+    }
+
+    .btns{
+        font-size: 10px;
+    }
+
+    .genre i{
+        position: absolute;
+        left: 90%;
+        transform: translateY(-50%);
+        color: var(--green);
+        cursor: pointer;
+    }
+    
+}
